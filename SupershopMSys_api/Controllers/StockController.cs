@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupershopMSys_api.Data;
+using SupershopMSys_api.Model;
 
 namespace SupershopMSys_api.Controllers
 {
@@ -15,10 +16,20 @@ namespace SupershopMSys_api.Controllers
             _Context = context;
         }
 
+        [HttpGet]
         public async Task<IActionResult> GetAllStock()
         {
-            var stockFetch = _Context.stocks.ToListAsync();
+            var stockFetch = await _Context.stocks.ToListAsync();
             return Ok(stockFetch);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddInStock([FromBody] StockModel stockAddRequest)
+        {
+            await _Context.stocks.AddAsync(stockAddRequest);
+            await _Context.SaveChangesAsync();
+            return Ok();
         }
 
 
