@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Stock } from 'src/app/Model/stock.model';
+import { StockService } from 'src/app/Services/stock.service';
 
 @Component({
   selector: 'app-stock-list',
@@ -9,9 +10,16 @@ import { Stock } from 'src/app/Model/stock.model';
 export class StockListComponent implements OnInit{
   
     stocks: Stock[] = [];
-    constructor() { }
+    constructor(private stockService: StockService) { }
   
     ngOnInit(): void {
+      this.stockService.getallStocks()
+        .subscribe({
+            next: (stocks) => {
+              this.stocks = stocks;
+            },
+            error: (err: any) => console.log(err)
+        })      
     }
 
 }
