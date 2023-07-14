@@ -4705,11 +4705,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\project\\supershop.web\\SupershopMSys_api\\SupershopMSys_api.csproj",
+      "projectUniqueName": "E:\\project\\mohammadeunus\\ChalDal.web\\SupershopMSys_api\\SupershopMSys_api.csproj",
       "projectName": "SupershopMSys_api",
-      "projectPath": "E:\\project\\supershop.web\\SupershopMSys_api\\SupershopMSys_api.csproj",
+      "projectPath": "E:\\project\\mohammadeunus\\ChalDal.web\\SupershopMSys_api\\SupershopMSys_api.csproj",
       "packagesPath": "C:\\Users\\mubin\\.nuget\\packages\\",
-      "outputPath": "E:\\project\\supershop.web\\SupershopMSys_api\\obj\\",
+      "outputPath": "E:\\project\\mohammadeunus\\ChalDal.web\\SupershopMSys_api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mubin\\AppData\\Roaming\\NuGet\\NuGet.Config",

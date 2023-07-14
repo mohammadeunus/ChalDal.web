@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EDg6NyYOWNCnPlbB7MThnPLRWabrERI2/BEuGOoUyyzPi44KXYksXaWcNQU5SWsr3DyrBbyl2lSNuhfGGX8ERA==",
+  "dgSpecHash": "UpZdojBY/iupBtV+T/N+JVcBbzckEYQrBZcuQdO9/f6JYMsE639vuw4bR+bJEtS7WSoQGIwT0rwlqjk2WyhDcA==",
   "success": true,
-  "projectFilePath": "E:\\project\\supershop.web\\SupershopMSys_api\\SupershopMSys_api.csproj",
+  "projectFilePath": "E:\\project\\mohammadeunus\\ChalDal.web\\SupershopMSys_api\\SupershopMSys_api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mubin\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
     "C:\\Users\\mubin\\.nuget\\packages\\autofac.extensions.dependencyinjection\\8.0.0\\autofac.extensions.dependencyinjection.8.0.0.nupkg.sha512",
