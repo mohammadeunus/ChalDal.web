@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SupershopMSys_api.Data;
-using SupershopMSys_api.Model;
+using eCom_api.Data;
+using eCom_api.Model;
 
-namespace SupershopMSys_api.Controllers
+namespace eCom_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

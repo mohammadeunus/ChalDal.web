@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SupershopMSys_api.Model
+namespace eCom_api.Model
 {
     public class StockModel
     {

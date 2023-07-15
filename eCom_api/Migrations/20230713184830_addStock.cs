@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SupershopMSys_api.Migrations
+namespace eCom_api.Migrations
 {
     /// <inheritdoc />
     public partial class addStock : Migration
