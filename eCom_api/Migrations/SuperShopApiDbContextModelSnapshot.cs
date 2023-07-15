@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SupershopMSys_api.Data;
+using eCom_api.Data;
 
 #nullable disable
 
-namespace SupershopMSys_api.Migrations
+namespace eCom_api.Migrations
 {
     [DbContext(typeof(SuperShopApiDbContext))]
     partial class SuperShopApiDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace SupershopMSys_api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SupershopMSys_api.Model.StockModel", b =>
+            modelBuilder.Entity("eCom_api.Model.StockModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

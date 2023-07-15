@@ -2,7 +2,7 @@ using Autofac.Extensions.DependencyInjection;
 using Autofac;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using SupershopMSys_api.Data;
+using eCom_api.Data;
 using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);

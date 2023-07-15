@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SupershopMSys_api.Model;
+using eCom_api.Model;
 
-namespace SupershopMSys_api.Data
+namespace eCom_api.Data
 {
     public class SuperShopApiDbContext : DbContext
     {

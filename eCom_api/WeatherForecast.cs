@@ -1,4 +1,4 @@
-namespace SupershopMSys_api
+namespace eCom_api
 {
     public class WeatherForecast
     {
