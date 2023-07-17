@@ -1,10 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\eCom_api",
     "\\eCom_client",
     "\\eCom_client\\src",
     "\\eCom_client\\src\\app"
   ],
-  "SelectedNode": "\\eCom_client\\src\\app\\app.module.ts",
+  "SelectedNode": "\\eCom_api\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,0 +1,19 @@
+#navBarSearchForm input[type=text]{width:430px !important;}
+.logo {
+  height: 110%;  
+}
+
+/* app.component.css */
+ 
+.navbar {
+  padding-left: 20px;
+  height: 55px;
+  background-color: orange;
+}
+.form-control {
+  height: auto;
+  min-width: 300px; 
+}
+.signIn {
+  background-color: rgb(67, 158, 67);
+}
