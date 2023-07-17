@@ -1,0 +1,18 @@
+/* Custom styles for the navigation bar */
+.navbar {
+    background-color: #343a40; /* Dark background color */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem; /* Adjust the font size for the brand name */
+  }
+  
+  
+  .nav-link {
+    color: #fff; /* Text color for navigation links */
+    font-size: 1rem; /* Adjust the font size for the links */
+    padding: 0.5rem 1rem; /* Add some padding to the links */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+ 
