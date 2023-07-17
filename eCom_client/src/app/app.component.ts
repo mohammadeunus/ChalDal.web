@@ -6,7 +6,6 @@ import { AuthService } from './Services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-<<<<<<< HEAD
 export class AppComponent implements OnInit{
   title = 'Chaldal.com';
   isUserLoggedIn = false;
@@ -18,9 +17,5 @@ export class AppComponent implements OnInit{
     /*this.authService.isAuthenticated$.subscribe((loggedIn) => {
       this.isUserLoggedIn = loggedIn;
     });*/
-  }
-=======
-export class AppComponent {
-  title = 'Chaldal.com';
->>>>>>> 43c2f503e2e557b4cc75161e3ac23ad6959345b9
+  } 
 }
