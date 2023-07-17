@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\eCom_api\\Areas",
-    "\\eCom_api\\Areas\\Admin"
+    "\\eCom_client",
+    "\\eCom_client\\src",
+    "\\eCom_client\\src\\app"
   ],
-  "SelectedNode": "\\ChalDal.web.sln",
+  "SelectedNode": "\\eCom_client\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }
