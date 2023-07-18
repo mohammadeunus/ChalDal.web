@@ -14,6 +14,7 @@ import { DashBoardComponent } from './components/admin/dash-board/dash-board.com
 import { AdminHeaderComponent } from './components/admin/admin-header/admin-header.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductListComponent } from './components/admin/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashBoardComponent,
     DashBoardComponent,
     AdminHeaderComponent,
-    HomeComponent,  
+    HomeComponent,
+    ProductListComponent,  
   ],
   imports: [
     BrowserModule,
