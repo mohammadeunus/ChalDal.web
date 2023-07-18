@@ -17,8 +17,8 @@ namespace eCom_api.Model
         public string? CreatedBy { get; set; }
         [MaxLength(50)]
         public string? UpdatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public ICollection<ProductModel>? Product { get; set; }
 
     }
