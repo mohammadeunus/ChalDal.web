@@ -3,6 +3,7 @@
   }
   
 .navbar-brand {
+    padding-left: 20px;
     font-size: 1.5rem; /* Adjust the font size for the brand name */
   }
   
@@ -14,4 +15,3 @@
     text-decoration: none; /* Remove underline from links */
   }
   
- 

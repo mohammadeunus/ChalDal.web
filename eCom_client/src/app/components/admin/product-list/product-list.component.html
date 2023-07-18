@@ -1,1 +1,38 @@
-<p>product-list works!</p>
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="container my-5">
+      <h1>Product List</h1>
+      <table class="table" *ngIf="products && products.length > 0">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Cost Price</th>
+            <th scope="col">Selling Price</th>
+            <th scope="col">Last Updated</th>
+            <th scope="col">Updated By</th>
+            <th scope="col">Created By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let eachStock of products">
+            <td>{{ eachStock.id }}</td>
+            <td>{{ eachStock.name }}</td>
+            <td>{{ eachStock.quantity }}</td>
+            <td>{{ eachStock.price }}</td>
+            <td>{{ eachStock.vat }}</td>
+            <td>{{ eachStock.expirationDate }}</td>
+            <td>{{ eachStock.lastUpdated }}</td>
+            <td>{{ eachStock.updatedBy }}</td>
+            <td>{{ eachStock.createdBy }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!products || products.length <= 0">
+        no product available in stock
+      </p>
+    </div>
+  </body>
+</html>
