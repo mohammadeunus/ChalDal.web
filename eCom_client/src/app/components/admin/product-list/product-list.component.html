@@ -8,31 +8,22 @@
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Product Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Cost Price</th>
-            <th scope="col">Selling Price</th>
             <th scope="col">Last Updated</th>
             <th scope="col">Updated By</th>
             <th scope="col">Created By</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let eachStock of products">
-            <td>{{ eachStock.id }}</td>
-            <td>{{ eachStock.name }}</td>
-            <td>{{ eachStock.quantity }}</td>
-            <td>{{ eachStock.price }}</td>
-            <td>{{ eachStock.vat }}</td>
-            <td>{{ eachStock.expirationDate }}</td>
-            <td>{{ eachStock.lastUpdated }}</td>
-            <td>{{ eachStock.updatedBy }}</td>
-            <td>{{ eachStock.createdBy }}</td>
+          <tr *ngFor="let eachProduct of products">
+            <td>{{ eachProduct.id }}</td>
+            <td>{{ eachProduct.name }}</td>
+            <td>{{ eachProduct.lastUpdated }}</td>
+            <td>{{ eachProduct.updatedBy }}</td>
+            <td>{{ eachProduct.createdBy }}</td>
           </tr>
         </tbody>
       </table>
-      <p *ngIf="!products || products.length <= 0">
-        no product available in stock
-      </p>
+      <p *ngIf="!products || products.length <= 0">no product available</p>
     </div>
   </body>
 </html>

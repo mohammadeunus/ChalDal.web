@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashBoardComponent },
       { path: 'stock', component: StockListComponent },  
-      { path: 'products', component: ProductListComponent},  
+      { path: 'product', component: ProductListComponent},  
       // Add more admin routes as needed
     ],
   },
