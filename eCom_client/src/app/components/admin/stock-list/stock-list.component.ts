@@ -17,6 +17,7 @@ export class StockListComponent implements OnInit{
         .subscribe({
             next: (stocks) => {
               this.stocks = stocks;
+              console.log(stocks);
             },
             error: (err: any) => console.log(err)
         })      

@@ -9,13 +9,14 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class ProductListComponent implements OnInit{
   products: Product[] = [];
-  constructor(private ProductService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.ProductService.getallStocks()
+    this.productService.GetAllProduct()
       .subscribe({
           next: (products) => {
             this.products = products;
+            console.log(products);
           },
           error: (err: any) => console.log(err)
       })      

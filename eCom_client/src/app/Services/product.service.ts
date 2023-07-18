@@ -11,7 +11,7 @@ export class ProductService {
   baseApiUrl:string =environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { } //to be able to talk http api we need to inject httpclient
-    getallStocks(): Observable<Product[]>{
+    GetAllProduct(): Observable<Product[]>{
     return this.http.get<Product[]>(this.baseApiUrl + 'api/products');
   }
 }
