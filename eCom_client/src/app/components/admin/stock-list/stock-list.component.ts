@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Stock } from 'src/app/Model/stock.model';
-import { StockService } from 'src/app/Services/stock.service';
+import { StockService } from 'src/app/Services/stock/stock.service';
 
 @Component({
   selector: 'app-stock-list',
@@ -17,6 +17,7 @@ export class StockListComponent implements OnInit{
         .subscribe({
             next: (stocks) => {
               this.stocks = stocks;
+              console.log(stocks);
             },
             error: (err: any) => console.log(err)
         })      
