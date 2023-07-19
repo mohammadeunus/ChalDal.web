@@ -10,8 +10,9 @@ namespace eCom_api.Data
         {
         }
         public DbSet<StockModel> stocks  { get; set; } 
-        public DbSet<ProductModel> product { get; set; } 
-        public DbSet<CategoryModel> category { get; set; } 
+        public DbSet<ProductModel> product { get; set; }
+        public DbSet<CategoryModel> category { get; set; }
+        public DbSet<TrendingProductModel> trendingProducts { get; set; }
 
     }
 }
