@@ -1,30 +1,89 @@
-<nav class="navbar navbar-expand-sm navbar-blue">
-  <div class="container-fluid">
-    <a class="logo" href="user">
-      <img src="assets/logo.png" alt="Logo" class="logo-img" />
-    </a>
+<header class="py-3 mb-3 border-bottom">
+  <div
+    class="container-fluid d-grid gap-3 align-items-center"
+    style="grid-template-columns: 1fr 2fr"
+  >
+    <!-- Collapsible List -->
+    <nav class="navbar navbar-expand-lg">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="logo" href="user">
+            <img
+              src="assets/logo.png"
+              alt="Logo"
+              width="155"
+              height="auto"
+              class="logo-img"
+            />
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/user/fruits">Fruits</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/user/vegetables"
+                >vegetables</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/user/home-kitchen"
+                >Home & Kitchen</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Popular</a>
+        </li>
+      </ul>
+    </nav>
 
-    <div class="d-flex justify-content-center flex-grow-1">
-      <form class="d-flex" id="navBarSearchForm">
-        <div class="input-group">
-          <input
-            class="form-control"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-light" type="submit">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
+    <!-- Search and User Profile -->
+    <div class="d-flex align-items-center">
+      <form class="w-100 me-3" role="search">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search..."
+          aria-label="Search"
+        />
       </form>
-    </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+      <div class="flex-shrink-0 dropdown">
+        <a
+          href="#"
+          class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://avatars.githubusercontent.com/u/38430781?v=4"
+            alt="mdo"
+            width="32"
+            height="32"
+            class="rounded-circle"
+          />
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
     </div>
-
-    <!-- Add the "Sign In" button on the right -->
-    <button class="btn btn-primary ml-auto signIn">Sign In</button>
   </div>
-</nav>
+</header>
