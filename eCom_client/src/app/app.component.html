@@ -1,13 +1,1 @@
-<!-- Main Content Area -->
-<div class="main">
-  <!-- Conditionally load user or admin content based on user role -->
-  <ng-container *ngIf="isUserLoggedIn; else adminContent">
-    <!-- User Content -->
-    <router-outlet></router-outlet>
-  </ng-container>
-
-  <ng-template #adminContent>
-    <!-- Admin Content -->
-    <router-outlet></router-outlet>
-  </ng-template>
-</div>
+<router-outlet></router-outlet>

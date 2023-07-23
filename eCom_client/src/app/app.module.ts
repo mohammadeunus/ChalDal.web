@@ -16,6 +16,7 @@ import { HomeComponent } from './components/user/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductListComponent } from './components/admin/product-list/product-list.component';
 import { NgChartsModule } from 'ng2-charts';
+import { SideNavComponent } from './components/user/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NgChartsModule } from 'ng2-charts';
     DashBoardComponent,
     AdminHeaderComponent,
     HomeComponent,
-    ProductListComponent,  
+    ProductListComponent,
+    SideNavComponent,  
   ],
   imports: [
     BrowserModule,
