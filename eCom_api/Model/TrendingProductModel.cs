@@ -4,8 +4,6 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int PopularityCount { get; set; }
-        public int HitIncrease { get; set; }
+        public int PopularityCount { get; set; } 
     }
-
 }

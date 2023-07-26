@@ -14,7 +14,6 @@ namespace eCom_api.Model
         public decimal Vat { get; set; }
         public string? Description { get; set; }
         public string? ImageUrl { get; set; }
-        public int Quantity { get; set; }
         public DateTime? ExpirationDate { get; set; }
         public DateTime? LastUpdated { get; set; }
         public DateTime? CreatedDate { get; set; }

@@ -22,7 +22,7 @@ namespace YourApplication.Controllers
             try
             {
                 // Call the stored procedure using FromSqlRaw
-                var topProducts = _context.product?.FromSqlRaw("EXEC GetTopProducts").ToList();
+                var topProducts = _context.trendingProducts?.FromSqlRaw("EXEC GetTopProducts").ToList();
 
                 return Ok(topProducts);
             }
