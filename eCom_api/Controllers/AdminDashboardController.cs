@@ -9,9 +9,9 @@ namespace YourApplication.Controllers
     [Route("api/[controller]/[action]")]
     public class AdminDashboardController : ControllerBase
     {
-        private readonly SuperShopApiDbContext _context;
+        private readonly EComApiDbContext _context;
 
-        public AdminDashboardController(SuperShopApiDbContext context)
+        public AdminDashboardController(EComApiDbContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace YourApplication.Controllers
             try
             {
                 // Call the stored procedure using FromSqlRaw
-                var topProducts = _context.product?.FromSqlRaw("EXEC GetTopProducts").ToList();
+                var topProducts = _context.trendingProducts?.FromSqlRaw("EXEC GetTopProducts").ToList();
 
                 return Ok(topProducts);
             }

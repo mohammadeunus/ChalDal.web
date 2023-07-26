@@ -29,7 +29,7 @@ builder.Host.UseSerilog((ctx, lc) => lc
 
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<SuperShopApiDbContext>(options =>
+builder.Services.AddDbContext<EComApiDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 
