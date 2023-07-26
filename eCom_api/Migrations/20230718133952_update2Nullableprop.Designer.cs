@@ -11,7 +11,7 @@ using eCom_api.Data;
 
 namespace eCom_api.Migrations
 {
-    [DbContext(typeof(SuperShopApiDbContext))]
+    [DbContext(typeof(EComApiDbContext))]
     [Migration("20230718133952_update2Nullableprop")]
     partial class update2Nullableprop
     {

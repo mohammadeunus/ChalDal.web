@@ -10,7 +10,7 @@ using eCom_api.Data;
 
 namespace eCom_api.Migrations
 {
-    [DbContext(typeof(SuperShopApiDbContext))]
+    [DbContext(typeof(EComApiDbContext))]
     partial class SuperShopApiDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

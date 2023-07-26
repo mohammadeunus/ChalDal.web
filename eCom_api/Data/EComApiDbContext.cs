@@ -3,9 +3,9 @@ using eCom_api.Model;
 
 namespace eCom_api.Data
 {
-    public class SuperShopApiDbContext : DbContext
+    public class EComApiDbContext : DbContext
     {
-        public SuperShopApiDbContext(DbContextOptions<SuperShopApiDbContext> options)
+        public EComApiDbContext(DbContextOptions<EComApiDbContext> options)
             : base(options)
         {
         }

@@ -10,8 +10,8 @@ namespace eCom_api.Controllers
     [ApiController]
     public class productController : ControllerBase
     {
-        readonly SuperShopApiDbContext _Context;
-        public productController(SuperShopApiDbContext context)
+        readonly EComApiDbContext _Context;
+        public productController(EComApiDbContext context)
         {
             _Context = context;
         }

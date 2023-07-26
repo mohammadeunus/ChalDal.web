@@ -11,7 +11,7 @@ using eCom_api.Data;
 
 namespace eCom_api.Migrations
 {
-    [DbContext(typeof(SuperShopApiDbContext))]
+    [DbContext(typeof(EComApiDbContext))]
     [Migration("20230713184830_addStock")]
     partial class addStock
     {
