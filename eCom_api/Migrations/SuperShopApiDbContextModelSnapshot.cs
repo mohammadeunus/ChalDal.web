@@ -51,7 +51,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.ProductModel", b =>
@@ -105,7 +105,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("product");
+                    b.ToTable("product", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.StockModel", b =>
@@ -141,7 +141,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("stocks");
+                    b.ToTable("stocks", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.TrendingProductModel", b =>
@@ -161,7 +161,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("trendingProducts");
+                    b.ToTable("trendingProducts", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.ProductModel", b =>

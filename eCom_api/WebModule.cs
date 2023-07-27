@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using Autofac.Core; 
+using Autofac.Core;
+using eCom_api.Repository;
 
 internal class WebModule : Module
 {
@@ -12,7 +13,7 @@ internal class WebModule : Module
         //builder.RegisterType<IndexModel>().AsSelf(); //if wish to pass a model throgh DI
         /* RegisterType<IndexModel>(), it registers the IndexModel class as a dependency with Autofac.
          * .AsSelf(), it specifies that, Autofac will provide an instance of IndexModel when requested */
-        //builder.RegisterType<ProductRepository>().AsSelf();
+        builder.RegisterType<ProductRepository>().AsSelf();
         //builder.RegisterType<SalesSummaryRepository>().AsSelf();
         base.Load(builder);
     }
