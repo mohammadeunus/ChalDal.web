@@ -1,7 +1,7 @@
 # a eCommerce web API
 ##Database design
  
-![UML_eCom](/asset/UML_eCom.png)
+![UML_eCom](/assests/UML_eCom.drawio.png)
 
 ### Relationships between Models
 
