@@ -3,16 +3,16 @@
 |      Product      |   |     Review       |   |     Stock       |
 +-------------------+   +------------------+   +-----------------+
 | ProductId (PK)    |   | ReviewId (PK)    |   | StockId (PK)    |
-| Name             |   | ProductId (FK)   |   | ProductId (FK)  |
-| Description      |   | UserId (FK)      |   | Quantity        |
-| Price            |   | Comment          |   | ReservedQuantity|
-| ImageUrl         |   | Rating           |   +-----------------+
-| Brand            |   | ReviewDate       |
-| Category         |   | HelpfulCount     |
+| Name              |   | ProductId (FK)   |   | ProductId (FK)  |
+| Description       |   | UserId (FK)      |   | Quantity        |
+| Price             |   | Comment          |   | ReservedQuantity|
+| ImageUrl          |   | Rating           |   +-----------------+
+| Brand             |   | ReviewDate       |
+| Category          |   | HelpfulCount     |
 | DiscountPercentage|   +------------------+
-| DiscountStartDate|
-| DiscountEndDate  |
-| IsDiscounted     |
+| DiscountStartDate |
+| DiscountEndDate   |
+| IsDiscounted      |
 +-------------------+
 
 +-------------------+   +------------------+   +-----------------+
@@ -31,8 +31,7 @@
                                                +-----------------+
                                                | WishlistId (PK) |
                                                | ProductId (FK)  |
-                                               | UserId (FK)     |
-                                               | DateAdded       |
+                                               | UserId (FK)     | 
                                                +-----------------+
 
 ### Relationships between Models
