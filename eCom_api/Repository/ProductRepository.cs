@@ -15,7 +15,7 @@ namespace eCom_api.Repository
         { 
             await _context.product.AddAsync(model);
             await _context.SaveChangesAsync();
-            return model.Id;
+            return model.ProductId;
         }
     }
 }
