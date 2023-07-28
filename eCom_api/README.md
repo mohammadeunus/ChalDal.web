@@ -1,38 +1,5 @@
 ﻿##Database design
-+-------------------+   +------------------+   +-----------------+
-|      Product      |   |     Review       |   |     Stock       |
-+-------------------+   +------------------+   +-----------------+
-| ProductId (PK)    |   | ReviewId (PK)    |   | StockId (PK)    |
-| Name              |   | ProductId (FK)   |   | ProductId (FK)  |
-| Description       |   | UserId (FK)      |   | Quantity        |
-| Price             |   | Comment          |   | ReservedQuantity|
-| ImageUrl          |   | Rating           |   +-----------------+
-| Brand             |   | ReviewDate       |
-| Category          |   | HelpfulCount     |
-| DiscountPercentage|   +------------------+
-| DiscountStartDate |
-| DiscountEndDate   |
-| IsDiscounted      |
-+-------------------+
-
-+-------------------+   +------------------+   +-----------------+
-|      CartItem     |   |       Order      |   |     Payment     |
-+-------------------+   +------------------+   +-----------------+
-| CartItemId (PK)   |   | OrderId (PK)     |   | PaymentId (PK)  |
-| ProductId (FK)    |   | UserId (FK)      |   | OrderId (FK)    |
-| UserId (FK)       |   | TotalAmount      |   | PaymentMethod   |
-| Quantity          |   | ShippingAddress  |   | Amount          |
-| DateAdded         |   | OrderDate        |   | PaymentDate     |
-+-------------------+   | OrderStatus      |   | PaymentStatus   |
-                        +------------------|   +-----------------+
-                                           |
-                                           |   +-----------------+
-                                           +---|    Wishlist     |
-                                               +-----------------+
-                                               | WishlistId (PK) |
-                                               | ProductId (FK)  |
-                                               | UserId (FK)     | 
-                                               +-----------------+
+![UML_eCom](asset/UML_eCom.png)
 
 ### Relationships between Models
 

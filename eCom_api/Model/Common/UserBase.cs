@@ -3,9 +3,7 @@
 namespace eCom_api.Model.Common;
 
 public class UserBase: BaseEntity
-{
-    public int UserId { get; set; }
-
+{ 
     [Required]
     [MaxLength(100)]
     public string Username { get; set; }
@@ -16,6 +14,6 @@ public class UserBase: BaseEntity
     [Required]
     [EmailAddress]
     [MaxLength(100)]
-    public string Email { get; set; }
+    public string? Email { get; set; }
      
 }

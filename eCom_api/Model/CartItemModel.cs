@@ -8,8 +8,7 @@ public class CartItemModel : BaseEntity
 {
     [Key]
     public int CartItemId { get; set; }
-    public int Quantity { get; set; }
-    public DateTime DateAdded { get; set; }
+    public int Quantity { get; set; } 
 
 
     // relationship between entities (tables) 

@@ -14,6 +14,7 @@ namespace eCom_api.Model
         public decimal SellingPrice { get; set; }
 
 
+        // relationship between entities (tables) 
         public int ProductRefId { get; set; }
         [ForeignKey("ProductRefId")]
         public ProductModel? product { get; set; }

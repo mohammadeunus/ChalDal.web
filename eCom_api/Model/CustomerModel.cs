@@ -13,4 +13,5 @@ public class CustomerModel : UserBase
 
     [MaxLength(200)]
     public string? ShippingAddress { get; set; }
+    public List<ReviewModel>? Reviews { get; set; }
 }

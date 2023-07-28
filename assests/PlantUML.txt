@@ -1,0 +1,121 @@
+@startuml
+
+class BaseEntity { 
+    + IsDeleted : bool
+    + CreatedBy : string
+    + CreatedDate : DateTime
+    + UpdatedBy : string
+    + UpdatedDate : DateTime
+}
+
+class UserBase { 
+    + Username : string
+    + PasswordHash : string
+    + Email : string  
+    + // BaseEntity properties are inherited 
+}
+
+class Admin {
+    + AdminId : int
+    + // UserBase properties are inherited 
+}
+
+class Customer {
+    + CustomerId : int (PK)
+    + PhoneNumber : string
+    + ShippingAddress : string
+    + // UserBase properties are inherited 
+}
+
+class Product {
+    + ProductId : int (PK)
+    + Name : string
+    + Description : string
+    + Price : decimal
+    + ImageUrl : string
+    + Brand : string
+    + DiscountPercentage : decimal
+    + DiscountStartDate : DateTime
+    + DiscountEndDate : DateTime
+    + IsDiscounted : bool
+    + CategoryRefId : int (FK)
+}
+
+class Review {
+    + ReviewId : int (PK)
+    + Comment : string
+    + Rating : int 
+    + ProductRefId : int (FK)
+    + CustomerRefId : int (FK)
+}
+
+class Stock {
+    + StockId : int (PK)
+    + Quantity : int
+    + CostPrice : decimal
+    + SellingPrice : decimal 
+    + ProductRefId : int (FK)
+}
+
+class CartItem {
+    + CartItemId : int (PK)
+    + Quantity : int 
+    + ProductRefId : int (FK)
+    + CustomerRefId : int (FK)
+}
+
+class Order {
+    + OrderId : int (PK)
+    + TotalAmount : decimal
+    + ShippingAddress : string
+    + OrderDate : DateTime
+    + OrderStatus : string 
+    + CustomerRefId: int (FK)
+}
+
+class Payment {
+    + PaymentId : int (PK) 
+    + PaymentMethod : string
+    + Amount : decimal
+    + PaymentDate : DateTime
+    + PaymentStatus : string
+    + OrderRefId: int (FK) 
+}
+
+class Wishlist {
+    + WishlistId : int (PK) 
+    + CustomerRefId : int (FK) 
+}
+
+class Category{
+    + CategoryId : int (PK) 
+    + Name : string
+}
+
+UserBase <|-- Admin
+UserBase <|-- Customer
+
+BaseEntity <|-- UserBase
+
+BaseEntity <|-- Product
+BaseEntity <|-- Review
+BaseEntity <|-- Stock
+BaseEntity <|-- CartItem
+BaseEntity <|-- Order
+BaseEntity <|-- Payment
+BaseEntity <|-- Wishlist
+
+
+Customer "1" -- "N" Review
+Product "1" -- "N" Review
+Product "1" -- "N" Stock
+Product "N" -- "1" Category
+CartItem "1" -- "1" Product
+CartItem "1" -- "1" Customer
+Order "1" -- "1" Customer
+Order "1" -- "N" CartItem
+Order "1" -- "N" Payment
+Wishlist "1" -- "N" Product
+Wishlist "N" -- "1" Customer
+
+@enduml

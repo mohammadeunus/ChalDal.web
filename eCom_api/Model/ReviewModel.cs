@@ -13,8 +13,6 @@ public class ReviewModel : BaseEntity
 
     public int? Rating { get; set; }
 
-    public DateTime ReviewDate { get; set; }
-
 
     // relationship between entities (tables) 
     public int ProductRefId { get; set; }
