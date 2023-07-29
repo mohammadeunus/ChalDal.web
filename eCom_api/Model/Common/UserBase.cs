@@ -8,6 +8,7 @@ public class UserBase: BaseEntity
     [MaxLength(100)]
     public string Username { get; set; }
 
+    [MaxLength(100)]
     [DataType(DataType.Password)]
     public string PasswordHash { get; set; }
 
