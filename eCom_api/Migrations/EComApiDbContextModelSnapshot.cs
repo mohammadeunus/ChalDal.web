@@ -313,9 +313,6 @@ namespace eCom_api.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("CategoryModelCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryRefId")
                         .HasColumnType("int");
 
@@ -354,9 +351,6 @@ namespace eCom_api.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("StockRefId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -369,11 +363,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryModelCategoryId");
-
                     b.HasIndex("CategoryRefId");
-
-                    b.HasIndex("StockRefId");
 
                     b.HasIndex("WishlistModelWishlistId");
 
@@ -468,7 +458,8 @@ namespace eCom_api.Migrations
 
                     b.HasKey("StockId");
 
-                    b.HasIndex("ProductRefId");
+                    b.HasIndex("ProductRefId")
+                        .IsUnique();
 
                     b.ToTable("Stocks");
                 });
@@ -575,20 +566,10 @@ namespace eCom_api.Migrations
 
             modelBuilder.Entity("eCom_api.Model.ProductModel", b =>
                 {
-                    b.HasOne("eCom_api.Model.CategoryModel", null)
-                        .WithMany("Product")
-                        .HasForeignKey("CategoryModelCategoryId");
-
                     b.HasOne("eCom_api.Model.CategoryModel", "Category")
-                        .WithMany()
+                        .WithMany("Product")
                         .HasForeignKey("CategoryRefId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("eCom_api.Model.StockModel", "Stocks")
-                        .WithMany()
-                        .HasForeignKey("StockRefId")
-                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("eCom_api.Model.WishlistModel", null)
@@ -596,8 +577,6 @@ namespace eCom_api.Migrations
                         .HasForeignKey("WishlistModelWishlistId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Stocks");
                 });
 
             modelBuilder.Entity("eCom_api.Model.ReviewModel", b =>
@@ -619,13 +598,13 @@ namespace eCom_api.Migrations
 
             modelBuilder.Entity("eCom_api.Model.StockModel", b =>
                 {
-                    b.HasOne("eCom_api.Model.ProductModel", "product")
-                        .WithMany()
-                        .HasForeignKey("ProductRefId")
+                    b.HasOne("eCom_api.Model.ProductModel", "Product")
+                        .WithOne("Stocks")
+                        .HasForeignKey("eCom_api.Model.StockModel", "ProductRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("product");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("eCom_api.Model.WishlistModel", b =>
@@ -659,6 +638,8 @@ namespace eCom_api.Migrations
             modelBuilder.Entity("eCom_api.Model.ProductModel", b =>
                 {
                     b.Navigation("Reviews");
+
+                    b.Navigation("Stocks");
                 });
 
             modelBuilder.Entity("eCom_api.Model.WishlistModel", b =>

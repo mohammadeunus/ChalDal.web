@@ -23,3 +23,8 @@ Could not create constraint or index. See previous errors.`
             base.OnModelCreating(modelBuilder);
         }
     ```
+    - it gave error again : because i was creating one2one relation in both table. created foreign key foreach other in both table . it caused conflict.
+        - error again: but solved. 
+            - solution summary: 
+                - follow the dependency of fk: if u pass a value in fk, make sure that fk has a row created in that table
+                - check how to create one2one and one2many relationship. the way i created the relationship were wrong.
