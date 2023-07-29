@@ -18,7 +18,7 @@ namespace eCom_api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCategory()
         {
-            var CategoryFetch = await _Context.category.ToListAsync();
+            var CategoryFetch = await _Context.Categories.ToListAsync();
             return Ok(CategoryFetch);
         }
 
@@ -26,7 +26,7 @@ namespace eCom_api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddInCategory([FromBody] CategoryModel CategoryAddRequest)
         {
-            await _Context.category.AddAsync(CategoryAddRequest);
+            await _Context.Categories.AddAsync(CategoryAddRequest);
             await _Context.SaveChangesAsync();
             return Ok();
         }

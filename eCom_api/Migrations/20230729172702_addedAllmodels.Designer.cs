@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCom_api.Data;
 
@@ -11,9 +12,11 @@ using eCom_api.Data;
 namespace eCom_api.Migrations
 {
     [DbContext(typeof(EComApiDbContext))]
-    partial class EComApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230729172702_addedAllmodels")]
+    partial class addedAllmodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

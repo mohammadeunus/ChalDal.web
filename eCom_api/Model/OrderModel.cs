@@ -6,6 +6,7 @@ namespace eCom_api.Model;
 
 public class OrderModel : BaseEntity
 {
+    [Key]
     public int OrderId { get; set; }
 
     public decimal TotalAmount { get; set; }

@@ -13,7 +13,7 @@ namespace eCom_api.Repository
         }
         public async Task<int> AddNewProduct(ProductModel model)
         { 
-            await _context.product.AddAsync(model);
+            await _context.Products.AddAsync(model);
             await _context.SaveChangesAsync();
             return model.ProductId;
         }

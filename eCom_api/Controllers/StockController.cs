@@ -19,7 +19,7 @@ namespace eCom_api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllStock()
         {
-            var stockFetch = await _Context.stocks.ToListAsync();
+            var stockFetch = await _Context.Stocks.ToListAsync();
             return Ok(stockFetch);
         }
 
@@ -27,7 +27,7 @@ namespace eCom_api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddInStock([FromBody] StockModel stockAddRequest)
         {
-            await _Context.stocks.AddAsync(stockAddRequest);
+            await _Context.Stocks.AddAsync(stockAddRequest);
             await _Context.SaveChangesAsync();
             return Ok();
         }
