@@ -8,6 +8,7 @@ namespace eCom_api.Data
         public EComApiDbContext(DbContextOptions<EComApiDbContext> options)
             : base(options)
         {
+
         }
         public DbSet<AdminModel>? Admins { get; set; }
         public DbSet<CartItemModel>? CartItems { get; set; }
@@ -21,5 +22,24 @@ namespace eCom_api.Data
         public DbSet<TrendingProductModel>? TrendingProducts { get; set; }
         public DbSet<WishlistModel>? WishLists { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductModel>(entity =>
+            {
+                entity.HasOne(p => p.Stocks)
+                      .WithMany()
+                      .HasForeignKey(p => p.StockRefId)
+                      .OnDelete(DeleteBehavior.NoAction); // Specify the cascading behavior
+
+                entity.HasOne(p => p.Category)
+                      .WithMany()
+                      .HasForeignKey(p => p.CategoryRefId);
+            });
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+
     }
+
 }

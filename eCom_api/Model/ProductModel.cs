@@ -36,7 +36,10 @@ public class ProductModel : BaseEntity
 
     // relationship between entities (tables) 
     public List<ReviewModel>? Reviews { get; set; } // product can have multiple reviews from different users
-    public List<StockModel>? Stocks { get; set; } // product can have multiple stock, cause each stock has its expiration date
+    
+    public int StockRefId { get; set; } // each product will have only one Stock. 
+    [ForeignKey("StockRefId")]
+    public StockModel? Stocks { get; set; } 
 
     public int CategoryRefId { get; set; } // product will have only one category. 
     [ForeignKey("CategoryRefId")]
