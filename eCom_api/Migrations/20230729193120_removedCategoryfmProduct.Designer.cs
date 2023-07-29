@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCom_api.Data;
 
@@ -11,9 +12,11 @@ using eCom_api.Data;
 namespace eCom_api.Migrations
 {
     [DbContext(typeof(EComApiDbContext))]
-    partial class EComApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230729193120_removedCategoryfmProduct")]
+    partial class removedCategoryfmProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -310,8 +313,12 @@ namespace eCom_api.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("Brand")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("CategoryModelCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryRefId")
                         .HasColumnType("int");
@@ -330,13 +337,15 @@ namespace eCom_api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal?>("DiscountPercentage")
+                        .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<DateTime?>("DiscountStartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -351,6 +360,9 @@ namespace eCom_api.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
+
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -363,7 +375,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryRefId");
+                    b.HasIndex("CategoryModelCategoryId");
 
                     b.HasIndex("WishlistModelWishlistId");
 
@@ -565,17 +577,13 @@ namespace eCom_api.Migrations
 
             modelBuilder.Entity("eCom_api.Model.ProductModel", b =>
                 {
-                    b.HasOne("eCom_api.Model.CategoryModel", "Category")
+                    b.HasOne("eCom_api.Model.CategoryModel", null)
                         .WithMany("Product")
-                        .HasForeignKey("CategoryRefId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryModelCategoryId");
 
                     b.HasOne("eCom_api.Model.WishlistModel", null)
                         .WithMany("Products")
                         .HasForeignKey("WishlistModelWishlistId");
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("eCom_api.Model.ReviewModel", b =>
