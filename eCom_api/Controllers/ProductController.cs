@@ -27,8 +27,8 @@ public class productController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllProduct()
     {
-        var productFetch = await _Context.Products.ToListAsync();
-        return Ok(productFetch);
+        var productDataList = await _productRepository.GetProductDataListAsync();
+        return Ok(productDataList);
     }
 
 
