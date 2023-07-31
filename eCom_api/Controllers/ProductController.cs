@@ -14,13 +14,11 @@ namespace eCom_api.Controllers;
 public class productController : ControllerBase
 {
     readonly EComApiDbContext _Context;
-    readonly IWebHostEnvironment _webHostEnvironment;
     readonly ProductRepository _productRepository;
 
-    public productController(EComApiDbContext context, IWebHostEnvironment webHostEnvironment, ProductRepository productRepository)
+    public productController(EComApiDbContext context, ProductRepository productRepository)
     {
         _Context = context;
-        _webHostEnvironment = webHostEnvironment;
         _productRepository = productRepository;
     }
 
@@ -28,6 +26,12 @@ public class productController : ControllerBase
     public async Task<IActionResult> GetAllProduct()
     {
         var productDataList = await _productRepository.GetProductDataListAsync();
+        return Ok(productDataList);
+    }
+    [HttpGet]
+    public async Task<IActionResult> SearchProductByName(int id)
+    {
+        var productDataList = _productRepository.SearchProduct(id);
         return Ok(productDataList);
     }
 
@@ -45,7 +49,7 @@ public class productController : ControllerBase
         }
         try
         { 
-            productModelObj.ImageUrl = await UploadImage("images/products/", productModelObj.imageFile);
+            productModelObj.ImageUrl = await _productRepository.UploadImage("images/products/", productModelObj.imageFile);
 
             int id = await _productRepository.AddNewProduct(productModelObj);
             if (id > 0)
@@ -64,17 +68,5 @@ public class productController : ControllerBase
         }
 
     }
-    private async Task<string> UploadImage(string imagePath, IFormFile file)
-    {
-        // combining GUID to create unique name before saving in wwwroot
-        string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-
-        imagePath += Guid.NewGuid().ToString() + "_" + file.FileName;
-
-        string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, imagePath);
-
-        await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-        return "/" + imagePath;
-    }
+    
 }

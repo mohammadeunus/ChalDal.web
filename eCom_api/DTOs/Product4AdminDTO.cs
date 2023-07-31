@@ -2,7 +2,7 @@
 
 namespace eCom_api.DTOs;
 
-public class ProductAdminDTO
+public class Product4AdminDTO
 {
     public int ProductId { get; set; }
     public string? CreatedBy { get; set; }
