@@ -71,12 +71,12 @@ public class ProductRepository
 
         return "/" + imagePath;
     }
-    public ProductModel SearchProduct(int id)
+    public async Task<ProductModel> SearchProductById(int id)
     {
-        return _context.Products.FirstOrDefault(d => d.ProductId == id);
-    }
+        return await _context.Products.FirstOrDefaultAsync(d => d.ProductId == id);
+    } 
 
-     
+
     public async Task<string> Search(string searchString)
     {
         try

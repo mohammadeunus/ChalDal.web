@@ -29,9 +29,9 @@ public class ProductController : ControllerBase
         return Ok(productDataList);
     }
     [HttpGet]
-    public async Task<IActionResult> GetProductById(int id)
+    public IActionResult GetProductById(int id)
     {
-        var productDataList = _productRepository.SearchProduct(id);
+        var productDataList = _productRepository.SearchProductById(id);
         return Ok(productDataList);
     }
 
