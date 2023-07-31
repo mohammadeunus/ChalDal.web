@@ -11,12 +11,12 @@ namespace eCom_api.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-public class productController : ControllerBase
+public class ProductController : ControllerBase
 {
     readonly EComApiDbContext _Context;
     readonly ProductRepository _productRepository;
 
-    public productController(EComApiDbContext context, ProductRepository productRepository)
+    public ProductController(EComApiDbContext context, ProductRepository productRepository)
     {
         _Context = context;
         _productRepository = productRepository;
@@ -29,12 +29,26 @@ public class productController : ControllerBase
         return Ok(productDataList);
     }
     [HttpGet]
-    public async Task<IActionResult> SearchProductByName(int id)
+    public async Task<IActionResult> GetProductById(int id)
     {
         var productDataList = _productRepository.SearchProduct(id);
         return Ok(productDataList);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> SearchProductName(string ProductName)
+    {
+        var result = await _productRepository.Search(ProductName);
+
+        if (string.IsNullOrEmpty(result))
+        {
+            return BadRequest("no product found");
+        }
+        else
+        {
+            return Content(result, "application/json");
+        }
+    } 
 
     [HttpPost]
     public async Task<IActionResult> AddInProduct([FromBody] ProductModel productModelObj)
