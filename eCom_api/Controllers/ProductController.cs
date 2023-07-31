@@ -12,13 +12,11 @@ namespace eCom_api.Controllers;
 [Route("api/[controller]/[action]")]
 [ApiController]
 public class ProductController : ControllerBase
-{
-    readonly EComApiDbContext _Context;
+{ 
     readonly ProductRepository _productRepository;
 
-    public ProductController(EComApiDbContext context, ProductRepository productRepository)
-    {
-        _Context = context;
+    public ProductController(ProductRepository productRepository)
+    { 
         _productRepository = productRepository;
     }
 
