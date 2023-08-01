@@ -45,7 +45,7 @@ public class StockRepository : ICRUDRepository<StockModel>
             var result = await _Context.Stocks
                .FirstOrDefaultAsync(e => e.StockId == entityId);
 
-            if (result != null)
+            if (result == null)
             {
                 return false;
             }
@@ -96,7 +96,7 @@ public class StockRepository : ICRUDRepository<StockModel>
             var result = await _Context.Stocks
                  .FirstOrDefaultAsync(e => e.StockId == entity.StockId);
 
-            if (result != null)
+            if (result == null)
             {
                 return false;
             }
