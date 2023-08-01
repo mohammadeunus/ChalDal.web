@@ -3,8 +3,8 @@
 public interface ICRUDRepository<TEntity> where TEntity : class
 {
     Task<IEnumerable<TEntity>> GetEntities();
-    Task<TEntity> GetEntity(int entityId);
-    Task<TEntity> AddEntity(TEntity entity);
-    Task<TEntity> UpdateEntity(TEntity entity);
-    void DeleteEntity(int entityId);
+    Task<TEntity> GetEntityById(int entityId);
+    Task<bool> AddEntity(TEntity entity);
+    Task<bool> UpdateEntity(TEntity entity);
+    Task<bool> DeleteEntity(int entityId);
 }
