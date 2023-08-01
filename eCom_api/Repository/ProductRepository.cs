@@ -74,7 +74,7 @@ public class ProductRepository
     public async Task<ProductModel> SearchProductById(int id)
     {
         return await _context.Products.FirstOrDefaultAsync(d => d.ProductId == id);
-    } 
+    }
 
 
     public async Task<string> Search(string searchString)
@@ -124,6 +124,42 @@ public class ProductRepository
         }
     }
 
+    public async Task<bool> UpdateEmployee(ProductModel ProductsInput)
+    {
+        var result = await _context.Products
+            .FirstOrDefaultAsync(e => e.ProductId == ProductsInput.ProductId);
+
+
+        if (result != null)
+        {
+            result = ProductsInput;
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public async Task<bool> DeleteProductById(int inputId)
+    {
+        var result = await _context.Products
+            .FirstOrDefaultAsync(e => e.ProductId == inputId);
+
+        if (result != null)
+        {
+            return false;
+        }
+
+        _context.Products.Remove(result);
+        var d = await _context.SaveChangesAsync();
+        if (d>0)
+        {
+            return true;
+        }
+        return false;
+
+    }
 
 
 }

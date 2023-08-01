@@ -33,6 +33,35 @@ public class ProductController : ControllerBase
         return Ok(productDataList);
     }
 
+    [HttpDelete]
+    public async Task<IActionResult> RemoveByProductId(int id)
+    {
+        if (id == 0)
+        {
+            return BadRequest("empty id");
+        }
+        if (await _productRepository.DeleteProductById(id))
+        {
+            return Ok();
+        }
+        return BadRequest("operation failed");
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateProduct(ProductModel productModelObj)
+    {
+        if (productModelObj == null)
+        {
+            return BadRequest();
+        }
+        if (await _productRepository.UpdateEmployee(productModelObj) )
+        {
+            return Ok(productModelObj);
+        }
+        return BadRequest("operation failed");
+    }
+
+
     [HttpGet]
     public async Task<IActionResult> SearchProductName(string ProductName)
     {
