@@ -15,25 +15,25 @@ namespace eCom_api.Repository;
 
 public class ProductRepository
 {
-    readonly EComApiDbContext _context;
+    readonly EComApiDbContext _Context;
     readonly IWebHostEnvironment _webHostEnvironment;
     private readonly ILogger<ProductRepository> _logger;
 
     public ProductRepository(EComApiDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<ProductRepository> logger)
     {
-        _context = context;
+        _Context = context;
         _webHostEnvironment = webHostEnvironment;
         _logger = logger;
     }
     internal async Task<int> AddNewProduct(ProductModel model)
     {
-        await _context.Products.AddAsync(model);
-        await _context.SaveChangesAsync();
+        await _Context.Products.AddAsync(model);
+        await _Context.SaveChangesAsync();
         return model.ProductId;
     }
     internal async Task<List<Product4AdminDTO>> GetProductDataListAsync()
     {
-        var products = await _context.Products
+        var products = await _Context.Products
             .Include(p => p.Stocks)
             .Include(p => p.Category)
             .ToListAsync();
@@ -71,23 +71,22 @@ public class ProductRepository
 
         return "/" + imagePath;
     }
-    public async Task<ProductModel> SearchProductById(int id)
+    public async Task<ProductModel> GetProductById(int id)
     {
-        return await _context.Products.FirstOrDefaultAsync(d => d.ProductId == id);
-    }
-
+        return await _Context.Products.FirstOrDefaultAsync(d => d.ProductId == id);
+    } 
 
     public async Task<string> Search(string searchString)
     {
         try
         {
 
-            if (_context.Products == null)
+            if (_Context.Products == null)
             {
                 return "[]";
             }
 
-            var products = from m in _context.Products
+            var products = from m in _Context.Products
                            select m; //The query is not executed at this point; it merely sets up the query expression.
 
             if (!string.IsNullOrEmpty(searchString))
@@ -126,14 +125,14 @@ public class ProductRepository
 
     public async Task<bool> UpdateEmployee(ProductModel ProductsInput)
     {
-        var result = await _context.Products
+        var result = await _Context.Products
             .FirstOrDefaultAsync(e => e.ProductId == ProductsInput.ProductId);
 
 
         if (result != null)
         {
             result = ProductsInput;
-            await _context.SaveChangesAsync();
+            await _Context.SaveChangesAsync();
 
             return true;
         }
@@ -143,7 +142,7 @@ public class ProductRepository
 
     public async Task<bool> DeleteProductById(int inputId)
     {
-        var result = await _context.Products
+        var result = await _Context.Products
             .FirstOrDefaultAsync(e => e.ProductId == inputId);
 
         if (result != null)
@@ -151,8 +150,8 @@ public class ProductRepository
             return false;
         }
 
-        _context.Products.Remove(result);
-        var d = await _context.SaveChangesAsync();
+        _Context.Products.Remove(result);
+        var d = await _Context.SaveChangesAsync();
         if (d>0)
         {
             return true;

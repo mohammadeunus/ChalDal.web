@@ -29,7 +29,7 @@ public class ProductController : ControllerBase
     [HttpGet]
     public IActionResult GetProductById(int id)
     {
-        var productDataList = _productRepository.SearchProductById(id);
+        var productDataList = _productRepository.GetProductById(id);
         return Ok(productDataList);
     }
 
