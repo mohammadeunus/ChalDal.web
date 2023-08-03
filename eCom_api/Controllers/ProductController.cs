@@ -90,7 +90,7 @@ public class ProductController : ControllerBase
         }
         try
         { 
-            productModelObj.ImageUrl = await _productRepository.UploadImage("images/products/", productModelObj.imageFile);
+            productModelObj.ImageUrl = await _productRepository.UploadImage("Assets/images/products/", productModelObj.imageFile);
 
             int id = await _productRepository.AddNewProduct(productModelObj);
             if (id > 0)
