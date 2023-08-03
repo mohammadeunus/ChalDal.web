@@ -15,6 +15,7 @@ internal class WebModule : Module
          * .AsSelf(), it specifies that, Autofac will provide an instance of IndexModel when requested */
         builder.RegisterType<ProductRepository>().AsSelf();
         builder.RegisterType<StockRepository>().AsSelf();
+        builder.RegisterType<CustomerProductRepository>().AsSelf();
         //builder.RegisterType<SalesSummaryRepository>().AsSelf();
         base.Load(builder);
     }

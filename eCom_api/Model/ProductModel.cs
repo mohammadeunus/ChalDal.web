@@ -22,6 +22,7 @@ public class ProductModel : BaseEntity
     public IFormFile? imageFile { get; set; } 
     [MaxLength(200)]
     public string? ImageUrl { get; set; }
+    public int Weight { get; set; }
      
      
     [MaxLength(100)]
