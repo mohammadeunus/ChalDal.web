@@ -44,7 +44,7 @@ public class CustomerProductRepository
         {
             CustomerProductList = productDataList,
             totalRecords = GetTotalProductsCount(),
-            Succeeded = productDataList.Count() > 0
+            Succeeded = productDataList.Count() > 0 ? true : false
         };
 
         return productResponseData;

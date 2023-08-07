@@ -64,7 +64,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("AdminId");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.CartItemModel", b =>
@@ -112,7 +112,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("ProductRefId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("CartItems", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.CategoryModel", b =>
@@ -147,7 +147,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.CustomerModel", b =>
@@ -199,7 +199,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.OrderModel", b =>
@@ -247,7 +247,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("CustomerRefId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.PaymentModel", b =>
@@ -298,7 +298,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("OrderRefId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.ProductModel", b =>
@@ -370,7 +370,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("WishlistModelWishlistId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.ReviewModel", b =>
@@ -419,7 +419,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("ProductRefId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.StockModel", b =>
@@ -464,7 +464,7 @@ namespace eCom_api.Migrations
                     b.HasIndex("ProductRefId")
                         .IsUnique();
 
-                    b.ToTable("Stocks");
+                    b.ToTable("Stocks", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.TrendingProductModel", b =>
@@ -484,7 +484,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TrendingProducts");
+                    b.ToTable("TrendingProducts", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.WishlistModel", b =>
@@ -519,7 +519,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("CustomerRefId");
 
-                    b.ToTable("WishLists");
+                    b.ToTable("WishLists", (string)null);
                 });
 
             modelBuilder.Entity("eCom_api.Model.CartItemModel", b =>
