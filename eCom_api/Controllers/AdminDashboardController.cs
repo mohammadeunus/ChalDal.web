@@ -9,9 +9,9 @@ namespace YourApplication.Controllers
     [Route("api/[controller]/[action]")]
     public class AdminDashboardController : ControllerBase
     {
-        private readonly EComApiDbContext _context;
+        private readonly ChalDalContext _context;
 
-        public AdminDashboardController(EComApiDbContext context)
+        public AdminDashboardController(ChalDalContext context)
         {
             _context = context;
         }

@@ -15,11 +15,11 @@ namespace eCom_api.Repository;
 
 public class ProductRepository
 {
-    readonly EComApiDbContext _Context;
+    readonly ChalDalContext _Context;
     readonly IWebHostEnvironment _webHostEnvironment;
     private readonly ILogger<ProductRepository> _logger;
 
-    public ProductRepository(EComApiDbContext context, IWebHostEnvironment webHostEnvironment, ILogger<ProductRepository> logger)
+    public ProductRepository(ChalDalContext context, IWebHostEnvironment webHostEnvironment, ILogger<ProductRepository> logger)
     {
         _Context = context;
         _webHostEnvironment = webHostEnvironment;

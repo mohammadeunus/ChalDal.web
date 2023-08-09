@@ -11,7 +11,7 @@ using eCom_api.Data;
 
 namespace eCom_api.Migrations
 {
-    [DbContext(typeof(EComApiDbContext))]
+    [DbContext(typeof(ChalDalContext))]
     [Migration("20230803224631_weightAddedinProduct")]
     partial class weightAddedinProduct
     {

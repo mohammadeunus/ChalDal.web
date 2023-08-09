@@ -7,14 +7,13 @@ namespace eCom_api.Repository;
 
 public class CustomerProductRepository
 {
-    readonly EComApiDbContext _Context; 
+    readonly ChalDalContext _Context; 
     private readonly ILogger<ProductRepository> _logger;
      
-    public CustomerProductRepository(EComApiDbContext context , ILogger<ProductRepository> logger)
+    public CustomerProductRepository(ChalDalContext context , ILogger<ProductRepository> logger)
     {
         _Context = context; 
-        _logger = logger;
-
+        _logger = logger; 
     }
     public int GetTotalProductsCount()
     {

@@ -9,8 +9,8 @@ namespace eCom_api.Repository;
 public class StockRepository : ICRUDRepository<StockModel>
 {
     ILogger<StockRepository> _Logger;
-    EComApiDbContext _Context; 
-    public StockRepository(EComApiDbContext context, ILogger<StockRepository> logger)
+    ChalDalContext _Context; 
+    public StockRepository(ChalDalContext context, ILogger<StockRepository> logger)
     { 
         _Logger = logger;
         _Context = context;

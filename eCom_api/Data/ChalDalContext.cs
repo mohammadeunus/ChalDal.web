@@ -3,9 +3,9 @@ using eCom_api.Model;
 
 namespace eCom_api.Data
 {
-    public class EComApiDbContext : DbContext
+    public class ChalDalContext : DbContext
     {
-        public EComApiDbContext(DbContextOptions<EComApiDbContext> options)
+        public ChalDalContext(DbContextOptions<ChalDalContext> options)
             : base(options)
         {
 
