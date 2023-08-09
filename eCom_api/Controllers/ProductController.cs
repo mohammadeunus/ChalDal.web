@@ -61,22 +61,7 @@ public class ProductController : ControllerBase
         return BadRequest("operation failed");
     }
 
-
-    [HttpGet]
-    public async Task<IActionResult> SearchProductName(string ProductName)
-    {
-        var result = await _productRepository.Search(ProductName);
-
-        if (string.IsNullOrEmpty(result))
-        {
-            return BadRequest("no product found");
-        }
-        else
-        {
-            return Content(result, "application/json");
-        }
-    } 
-
+     
     [HttpPost]
     public async Task<IActionResult> AddInProduct([FromBody] ProductModel productModelObj)
     {

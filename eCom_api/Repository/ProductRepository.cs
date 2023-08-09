@@ -76,52 +76,6 @@ public class ProductRepository
         return await _Context.Products.FirstOrDefaultAsync(d => d.ProductId == id);
     } 
 
-    public async Task<string> Search(string searchString)
-    {
-        try
-        {
-
-            if (_Context.Products == null)
-            {
-                return "[]";
-            }
-
-            var products = from m in _Context.Products
-                           select m; //The query is not executed at this point; it merely sets up the query expression.
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                products = products.Where(s => s.Name!.Contains(searchString));
-            }
-
-            var productDataList = products.Select(product => new Product4CustomerDTO
-            {
-                Name = product.Name,
-                Description = product.Description,
-                ImageUrl = product.ImageUrl,
-                Brand = product.Brand,
-                DiscountPercentage = product.DiscountPercentage,
-                DiscountStartDate = product.DiscountStartDate,
-                DiscountEndDate = product.DiscountEndDate,
-                IsDiscounted = product.IsDiscounted,
-                SellingPrice = product.Stocks.SellingPrice,
-                Quantity = product.Stocks.Quantity
-            }).ToList();
-
-            // Create a new anonymous object with only the "result" data.
-            var resultData = new { result = productDataList };
-
-            // Serialize the resultData object to JSON string.
-            string jsonString = JsonConvert.SerializeObject(resultData);
-
-            return jsonString;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogInformation($"ProductRepository > search > no product found by search: {ex}");
-            return "[]"; // Return an empty array if there was an exception.
-        }
-    }
 
     public async Task<bool> UpdateEmployee(ProductModel ProductsInput)
     {

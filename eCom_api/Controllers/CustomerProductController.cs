@@ -37,4 +37,20 @@ public class CustomerProductController : ControllerBase
     }
 
 
+    [HttpGet]
+    public async Task<IActionResult> SearchProductName(string ProductName)
+    {
+        var result = await _CustomerProductRepository.Search(ProductName);
+
+        if (string.IsNullOrEmpty(result))
+        {
+            return BadRequest("no product found");
+        }
+        else
+        {
+            return Content(result, "application/json");
+        }
+    }
+
+
 }
