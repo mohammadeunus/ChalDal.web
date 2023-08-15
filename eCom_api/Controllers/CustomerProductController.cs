@@ -1,7 +1,8 @@
 ﻿using eCom_api.Data;
 using eCom_api.Repository; 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace eCom_api.Controllers;
 
@@ -38,19 +39,19 @@ public class CustomerProductController : ControllerBase
 
 
     [HttpGet]
-    public async Task<IActionResult> SearchProductName(string ProductName)
+    public async Task<IActionResult> SearchProductName(string productName, int pageNumber)
     {
-        var result = await _CustomerProductRepository.Search(ProductName);
+        var result = await _CustomerProductRepository.Search(productName,1);
 
         if (string.IsNullOrEmpty(result))
         {
             return BadRequest("no product found");
         }
         else
-        {
-            return Content(result, "application/json");
+        {  
+            // Return the "result" array directly
+            return Ok(result);
         }
-    }
-
+    } 
 
 }

@@ -51,7 +51,7 @@ public class CustomerProductRepository
     }
 
 
-    public async Task<string> Search(string searchString)
+    public async Task<string> Search(string searchString,int pageNumber)
     {
         try
         {
@@ -85,9 +85,13 @@ public class CustomerProductRepository
 
             // Create a new anonymous object with only the "result" data.
             var resultData = new { result = productDataList };
+            var resultData3 = new { productDataList };
+            var resultData2 = productDataList;
 
             // Serialize the resultData object to JSON string.
             string jsonString = JsonConvert.SerializeObject(resultData);
+            string jsonString2 = JsonConvert.SerializeObject(resultData2);
+            string jsonString3 = JsonConvert.SerializeObject(resultData3);
 
             return jsonString;
         }
