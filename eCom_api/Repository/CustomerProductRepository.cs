@@ -31,7 +31,7 @@ public class CustomerProductRepository
             .Include(p => p.Category)
             .ToList(); // Execute the query and fetch the data into a list
 
-        var productDataList = prod.Select(product => new CustomerProductModel
+        var productDataList = prod.Select(product => new CustomerProductModelDTO
         {
             Name = product.Name,
             SellingPrice = product.Stocks?.SellingPrice,
