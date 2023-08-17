@@ -16,6 +16,7 @@ internal class WebModule : Module
         builder.RegisterType<ProductRepository>().AsSelf();
         builder.RegisterType<StockRepository>().AsSelf();
         builder.RegisterType<CustomerProductRepository>().AsSelf();
+        builder.RegisterType<SearchRepository>().AsSelf();
         //builder.RegisterType<SalesSummaryRepository>().AsSelf();
         base.Load(builder);
     }

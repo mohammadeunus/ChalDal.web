@@ -1,7 +1,9 @@
 ﻿using eCom_api.Data;
+using eCom_api.DTOs;
 using eCom_api.Repository; 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 
 namespace eCom_api.Controllers;
@@ -12,46 +14,59 @@ namespace eCom_api.Controllers;
 public class CustomerProductController : ControllerBase
 {
     readonly CustomerProductRepository _CustomerProductRepository;
+    readonly SearchRepository _SearchRepository;
+    readonly ILogger<CustomerProductController> _logger;
 
-    public CustomerProductController(CustomerProductRepository productRepository)
+    public CustomerProductController(CustomerProductRepository productRepository, SearchRepository searchRepository, ILogger<CustomerProductController> logger)
     {
         _CustomerProductRepository = productRepository;
+        _SearchRepository = searchRepository;
+        _logger = logger;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetProducts(int pageNumber = 1)
     {
-        int pageSize = 15; // Default page size
+        try
+        {
+            int pageSize = 15; // Default page size
 
-        var totalProducts = _CustomerProductRepository.GetTotalProductsCount(); // Get the total number of products
+            var totalProducts = _CustomerProductRepository.GetTotalProductsCount(); // Get the total number of products
 
-        // Calculate the total number of pages for pagination links
-        var totalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
+            // Calculate the total number of pages for pagination links
+            var totalPages = (int)Math.Ceiling((double)totalProducts / pageSize);
 
-        // Ensure pageNumber is within a valid range (1 to totalPages)
-        pageNumber = Math.Max(1, Math.Min(pageNumber, totalPages));
+            // Ensure pageNumber is within a valid range (1 to totalPages)
+            pageNumber = Math.Max(1, Math.Min(pageNumber, totalPages));
 
-        // You can return the productsOnPage and pagination details as JSON response
-        var response = _CustomerProductRepository.GetProductsByPage(pageNumber, pageSize);
+            // You can return the productsOnPage and pagination details as JSON response
+            var response = _CustomerProductRepository.GetProductsByPage(pageNumber, pageSize);
 
-        return Ok(response);
+            return Ok(response);
+
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"CustomerProductController > GetProducts > error fetching data: {ex}");
+            return StatusCode(500, "An error occurred: " + ex.Message);
+        }
     }
 
 
     [HttpGet]
     public async Task<IActionResult> SearchProductName(string productName, int pageNumber)
     {
-        var result = await _CustomerProductRepository.Search(productName,1);
-
-        if (string.IsNullOrEmpty(result))
+        try
         {
-            return BadRequest("no product found");
+            var productResponse = await _SearchRepository.Search(productName, pageNumber);
+            return Ok(productResponse);
         }
-        else
-        {  
-            // Return the "result" array directly
-            return Ok(result);
-        }
-    } 
-
+        catch (Exception ex)
+        {
+            _logger.LogError($"CustomerProductController > SearchProductName > error fetching data: {ex}");
+            return StatusCode(500, "An error occurred: " + ex.Message);
+        } 
+        
+    }
+     
 }
