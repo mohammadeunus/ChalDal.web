@@ -8,13 +8,13 @@ namespace eCom_api.Repository;
 
 public class CustomerProductRepository
 {
-    readonly ChalDalContext _Context; 
+    readonly ChalDalContext _Context;
     private readonly ILogger<ProductRepository> _logger;
-     
-    public CustomerProductRepository(ChalDalContext context , ILogger<ProductRepository> logger)
+
+    public CustomerProductRepository(ChalDalContext context, ILogger<ProductRepository> logger)
     {
-        _Context = context; 
-        _logger = logger; 
+        _Context = context;
+        _logger = logger;
     }
     public int GetTotalProductsCount()
     {
@@ -48,50 +48,6 @@ public class CustomerProductRepository
         };
 
         return productResponseData;
-    }
-
-
-    public async Task<string> Search(string searchString,int pageNumber)
-    {
-        try
-        {
-
-            if (_Context.Products == null)
-            {
-                return "[]";
-            }
-
-            var products = from m in _Context.Products
-                           select m; //The query is not executed at this point; it merely sets up the query expression.
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                products = products.Where(s => s.Name!.Contains(searchString));
-            }
-
-            var productDataList = products.Select(product => new Product4CustomerDTO
-            {
-                Name = product.Name,
-                Description = product.Description,
-                ImageUrl = product.ImageUrl,
-                Brand = product.Brand,
-                DiscountPercentage = product.DiscountPercentage,
-                DiscountStartDate = product.DiscountStartDate,
-                DiscountEndDate = product.DiscountEndDate,
-                IsDiscounted = product.IsDiscounted,
-                SellingPrice = product.Stocks.SellingPrice,
-                Quantity = product.Stocks.Quantity
-            }).ToList();
-              
-            string jsonString = JsonConvert.SerializeObject(productDataList); 
-
-            return jsonString;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogInformation($"ProductRepository > search > no product found by search: {ex}");
-            return "[]"; // Return an empty array if there was an exception.
-        }
     }
 
 }
