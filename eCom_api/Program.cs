@@ -4,10 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using eCom_api.Data;
 using Serilog.Events;
+using eCom_api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddControllers();
+
 //configure host_specific_properties (By customizing host-specific properties, you ensure your application is optimized for its specific hosting environment, be it local development, staging server, or production deployment.)
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
@@ -16,21 +20,11 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
         .RegisterModule(new WebModule());
 });
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 builder.Host.UseSerilog((ctx, lc) => lc
-    .MinimumLevel.Debug()
-    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-    .Enrich.FromLogContext()
-    .ReadFrom.Configuration(builder.Configuration));
-
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ChalDalContext>(options =>
-    options.UseSqlServer(connectionString));
+            .MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            .Enrich.FromLogContext()
+            .ReadFrom.Configuration(builder.Configuration));
 
 
 try
