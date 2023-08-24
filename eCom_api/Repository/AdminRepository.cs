@@ -1,4 +1,5 @@
-﻿using eCom_api.Data;
+﻿using Azure;
+using eCom_api.Data;
 using eCom_api.DTOs;
 using eCom_api.Model;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -15,6 +16,22 @@ public class AdminRepository
     public AdminRepository(ChalDalContext context)
     {
         _context = context;
+    }
+
+    public async Task<bool> LoginAdminPasswordMatches(AdminLoginDTO responseDTO)
+    {
+        var user = await _context.Admins.FirstOrDefaultAsync(x => x.Username == responseDTO.UserName); // returns the record if matches.
+          
+        using var hmac = new HMACSHA512(user.PasswordSalt);
+
+        var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(responseDTO.Password));
+
+        for (int i = 0; i < computedHash.Length; i++)
+        {
+            if (computedHash[i] != user.PasswordHash[i]) return false;
+        }
+        return true;
+
     }
 
     public async Task RegisterAdmin(RegisterAdminDTO response)
