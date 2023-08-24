@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCom_api.Data;
 
@@ -12,11 +11,9 @@ using eCom_api.Data;
 namespace eCom_api.Migrations
 {
     [DbContext(typeof(ChalDalContext))]
-    [Migration("20230823210353_passwordHashing")]
-    partial class passwordHashing
+    partial class ChalDalContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +47,11 @@ namespace eCom_api.Migrations
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varbinary(100)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varbinary(100)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -183,13 +178,11 @@ namespace eCom_api.Migrations
 
                     b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varbinary(100)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<byte[]>("PasswordSalt")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varbinary(100)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");

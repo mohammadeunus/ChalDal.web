@@ -7,13 +7,11 @@ public class UserBase: BaseEntity
     [Required]
     [MaxLength(100)]
     public string Username { get; set; }
-
-    [MaxLength(100)]
+     
     [DataType(DataType.Password)]
     public byte[] PasswordHash { get; set; }
 
-
-    [MaxLength(100)]
+     
     [DataType(DataType.Password)]
     public byte[] PasswordSalt { get; set; }
 
