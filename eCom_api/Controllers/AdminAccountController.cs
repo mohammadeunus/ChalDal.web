@@ -27,7 +27,7 @@ public class AdminAccountController : ControllerBase
     }
 
 
-    [HttpPost("admin-register")] // POST: api/account/register 
+    [HttpPost("admin-register")] // POST: api/admin-account/register 
     public async Task<ActionResult> AdminRegister([FromBody] RegisterAdminDTO response)
     {
         try
@@ -49,7 +49,7 @@ public class AdminAccountController : ControllerBase
 
 
 
-    [HttpPost("admin-login")] // POST: api/account/register 
+    [HttpPost("admin-login")] // POST: api/admin-account/login 
     public async Task<IActionResult> AdminLogin([FromBody] AdminLoginDTO response)
     {
         try
