@@ -5,19 +5,17 @@ using eCom_api.Data;
 using eCom_api.Model;
 using eCom_api.Repository;
 
-namespace eCom_api.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-public class StockController : ControllerBase
+namespace eCom_api.Controllers.Customer;
+ 
+public class StockController : CustomerBaseController
 {
     readonly StockRepository _StockRepo;
-    public StockController(StockRepository StockRepo) 
+    public StockController(StockRepository StockRepo)
     {
-        _StockRepo = StockRepo; 
+        _StockRepo = StockRepo;
     }
 
-    [HttpGet]
+    [HttpGet("GetStocks")]
     public async Task<IActionResult> GetStocks()
     {
         var stockFetch = await _StockRepo.GetEntities();
@@ -25,7 +23,7 @@ public class StockController : ControllerBase
     }
 
 
-    [HttpPost]
+    [HttpPost("AddStock")]
     public async Task<IActionResult> AddStock([FromBody] StockModel stockRequest)
     {
         if (await _StockRepo.AddEntity(stockRequest))
@@ -35,7 +33,7 @@ public class StockController : ControllerBase
         return BadRequest();
     }
 
-    [HttpDelete]
+    [HttpDelete("DeleteStock")]
     public async Task<IActionResult> DeleteStock(int id)
     {
         if (await _StockRepo.DeleteEntity(id))
@@ -44,7 +42,7 @@ public class StockController : ControllerBase
         }
         return BadRequest();
     }
-    [HttpPut]
+    [HttpPut("UpdateStock")]
     public async Task<IActionResult> UpdateStock(StockModel stockRequest)
     {
         if (await _StockRepo.UpdateEntity(stockRequest))

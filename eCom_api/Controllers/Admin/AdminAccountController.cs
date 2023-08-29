@@ -1,28 +1,14 @@
-﻿using eCom_api.Data;
-using eCom_api.DTOs;
-using eCom_api.Interfaces;
-using eCom_api.Model;
-using eCom_api.Model.Common;
-using eCom_api.Repository;
-using eCom_api.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Cryptography;
-using System.Text;
+﻿using eCom_api.DTOs;
+using eCom_api.Interfaces; 
+using Microsoft.AspNetCore.Mvc; 
 
-namespace eCom_api.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-public class AdminAccountController : ControllerBase
-{ 
+namespace eCom_api.Controllers.Admin;
+ 
+public class AdminAccountController : AdminBaseController
+{
     readonly ILogger<AdminAccountController> _logger;
     readonly IAdminRepository _adminRepository;
-    public AdminAccountController( IAdminRepository adminRepository, ILogger<AdminAccountController> logger)
+    public AdminAccountController(IAdminRepository adminRepository, ILogger<AdminAccountController> logger)
     {
         _adminRepository = adminRepository;
         _logger = logger;
@@ -47,7 +33,7 @@ public class AdminAccountController : ControllerBase
             if (newToken == null) return BadRequest("Token generation failed, try loggin in.");
 
             return Ok(newToken);
-            
+
         }
         catch (Exception ex)
         {
