@@ -1,8 +1,10 @@
 ﻿using eCom_api.Data;
 using eCom_api.DTOs;
+using eCom_api.Interfaces;
 using eCom_api.Model;
 using eCom_api.Model.Common;
 using eCom_api.Repository;
+using eCom_api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,15 +22,17 @@ public class AdminAccountController : ControllerBase
 { 
     readonly ILogger<AdminAccountController> _logger;
     readonly AdminRepository _adminRepository;
-    public AdminAccountController( AdminRepository adminRepository, ILogger<AdminAccountController> logger)
+    readonly ITokenService _tokenService;
+    public AdminAccountController( AdminRepository adminRepository, ILogger<AdminAccountController> logger, ITokenService tokenService)
     {
+        _tokenService = tokenService;
         _adminRepository = adminRepository;
         _logger = logger;
     }
 
 
     [HttpPost("admin-register")] // POST: api/admin-account/register 
-    public async Task<ActionResult> AdminRegister([FromBody] RegisterAdminDTO response)
+    public async Task<ActionResult<UserTokenDTO>> AdminRegister([FromBody] AdminRegisterDTO response)
     {
         try
         {
@@ -37,12 +41,17 @@ public class AdminAccountController : ControllerBase
 
 
             //register the user.
-            await _adminRepository.RegisterAdmin(response);
-            return Ok("User Registered Successfully");
+            var userTokenHelper = await _adminRepository.RegisterAdmin(response);
+            if (userTokenHelper == null) return BadRequest("Data Saving failed, try again.");
+            return new UserTokenDTO
+            {
+                UserName= response.UserName,
+                Token = _tokenService.CreateToken(userTokenHelper)
+            };
         }
         catch (Exception ex)
         {
-            _logger.LogInformation(ex.ToString());
+            _logger.LogInformation("AdminAccountController > AdminRegister > : " + ex.ToString());
             return BadRequest("Data Saving failed");
         }
     }

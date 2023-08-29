@@ -12,10 +12,13 @@ namespace eCom_api.Repository;
 public class AdminRepository
 {
     readonly ChalDalContext _context;
+    readonly ILogger<AdminRepository> _logger;
 
-    public AdminRepository(ChalDalContext context)
+    public AdminRepository(ChalDalContext context, ILogger<AdminRepository> logger)
     {
+
         _context = context;
+        _logger = logger;
     }
 
     public async Task<bool> LoginAdminPasswordMatches(AdminLoginDTO responseDTO)
@@ -34,12 +37,10 @@ public class AdminRepository
 
     }
 
-    public async Task RegisterAdmin(RegisterAdminDTO response)
+    public async Task<UserTokenHelperDTO> RegisterAdmin(AdminRegisterDTO response)
     {
         try
         {
-            
-
             using var hmac = new HMACSHA512();
             var user = new AdminModel
             {
@@ -53,15 +54,29 @@ public class AdminRepository
             };
             _context.Admins.Add(user);
             await _context.SaveChangesAsync();
+            return new UserTokenHelperDTO()
+            {
+                Username = user.Username, 
+                PasswordHash = user.PasswordHash,
+                PasswordSalt= user.PasswordSalt
+            };
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.ToString());
-            throw new InvalidOperationException("Data Saving failed", ex);
+            _logger.LogInformation("AdminRepository > AdminRegister > : " + ex.ToString());
+            return null;
         }
     }
     public async Task<bool> UserExist(string response)
     {
-        return await _context.Admins.AnyAsync(x=>x.Username ==response);
+        try
+        {
+            return await _context.Admins.AnyAsync(x => x.Username == response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogInformation("AdminRepository > UserExist > : " + ex.ToString());
+            return false;
+        }
     }
 }
