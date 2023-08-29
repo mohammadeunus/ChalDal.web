@@ -21,18 +21,16 @@ namespace eCom_api.Controllers;
 public class AdminAccountController : ControllerBase
 { 
     readonly ILogger<AdminAccountController> _logger;
-    readonly AdminRepository _adminRepository;
-    readonly ITokenService _tokenService;
-    public AdminAccountController( AdminRepository adminRepository, ILogger<AdminAccountController> logger, ITokenService tokenService)
+    readonly IAdminRepository _adminRepository;
+    public AdminAccountController( IAdminRepository adminRepository, ILogger<AdminAccountController> logger)
     {
-        _tokenService = tokenService;
         _adminRepository = adminRepository;
         _logger = logger;
     }
 
 
     [HttpPost("admin-register")] // POST: api/admin-account/register 
-    public async Task<ActionResult<UserTokenDTO>> AdminRegister([FromBody] AdminRegisterDTO response)
+    public async Task<IActionResult> AdminRegister([FromBody] AdminRegisterDTO response)
     {
         try
         {
@@ -41,13 +39,15 @@ public class AdminAccountController : ControllerBase
 
 
             //register the user.
-            var userTokenHelper = await _adminRepository.RegisterAdmin(response);
-            if (userTokenHelper == null) return BadRequest("Data Saving failed, try again.");
-            return new UserTokenDTO
-            {
-                UserName= response.UserName,
-                Token = _tokenService.CreateToken(userTokenHelper)
-            };
+            var newUserTokenHelper = await _adminRepository.RegisterAdmin(response);
+            if (newUserTokenHelper == null) return BadRequest("Data Saving failed, try again.");
+
+            //generate token.
+            var newToken = await _adminRepository.generateToken(newUserTokenHelper);
+            if (newToken == null) return BadRequest("Token generation failed, try loggin in.");
+
+            return Ok(newToken);
+            
         }
         catch (Exception ex)
         {
@@ -59,31 +59,26 @@ public class AdminAccountController : ControllerBase
 
 
     [HttpPost("admin-login")] // POST: api/admin-account/login 
-    public async Task<IActionResult> AdminLogin([FromBody] AdminLoginDTO response)
+    public async Task<IActionResult> AdminLogin([FromBody] UserLoginDTO response)
     {
         try
         {
-
-            //check if userName already exist or not.
+            //check if userName in database.
             if (!await _adminRepository.UserExist(response.UserName)) return Unauthorized("Invalid UserName.");
 
-            //UserName Found > next step: check pass
-            bool passMatched = await _adminRepository.LoginAdminPasswordMatches(response);
+            //UserName Found > match pass in database.
+            var passMatched = await _adminRepository.LoginAdmin(response);
+            if (passMatched == null) return Unauthorized("Invalid Password."); // return if password doesn't match.
 
-            if (passMatched)
-            {
-                return Ok("User logged in.");
-            }
-            return Unauthorized("Invalid Password.");
-                /*(new
-            {
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = token.ValidTo
-            });*/
+            //generate token.
+            var newToken = await _adminRepository.generateToken(passMatched);
+            if (newToken == null) return BadRequest("Token generation failed, try loggin in.");
+
+            return Ok(newToken);
         }
         catch (Exception ex)
         {
-            _logger.LogInformation(ex.ToString());
+            _logger.LogInformation("AdminAccountController > AdminLogin > : " + ex.ToString());
             return BadRequest("Data Saving failed");
         }
     }

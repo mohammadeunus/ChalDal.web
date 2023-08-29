@@ -27,6 +27,8 @@ internal class WebModule : Module
 
         // Register a component with transient lifetime scope
         builder.RegisterType<TokenService>().As<ITokenService>().InstancePerDependency();
+        builder.RegisterType<AdminRepository>().As<IAdminRepository>().InstancePerLifetimeScope();
+        builder.RegisterType<TokenService>().As<ITokenService>().InstancePerLifetimeScope();
 
         base.Load(builder);
     }
