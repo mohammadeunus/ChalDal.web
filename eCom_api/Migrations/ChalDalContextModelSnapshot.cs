@@ -11,7 +11,7 @@ using eCom_api.Data;
 namespace eCom_api.Migrations
 {
     [DbContext(typeof(ChalDalContext))]
-    partial class EComApiDbContextModelSnapshot : ModelSnapshot
+    partial class ChalDalContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -45,10 +45,13 @@ namespace eCom_api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -64,7 +67,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("AdminId");
 
-                    b.ToTable("Admins", (string)null);
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("eCom_api.Model.CartItemModel", b =>
@@ -112,7 +115,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("ProductRefId");
 
-                    b.ToTable("CartItems", (string)null);
+                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("eCom_api.Model.CategoryModel", b =>
@@ -147,7 +150,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("eCom_api.Model.CustomerModel", b =>
@@ -173,10 +176,13 @@ namespace eCom_api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -199,7 +205,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("CustomerId");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("eCom_api.Model.OrderModel", b =>
@@ -247,7 +253,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("CustomerRefId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("eCom_api.Model.PaymentModel", b =>
@@ -298,7 +304,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("OrderRefId");
 
-                    b.ToTable("Payments", (string)null);
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("eCom_api.Model.ProductModel", b =>
@@ -370,7 +376,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("WishlistModelWishlistId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("eCom_api.Model.ReviewModel", b =>
@@ -419,7 +425,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("ProductRefId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("eCom_api.Model.StockModel", b =>
@@ -464,7 +470,7 @@ namespace eCom_api.Migrations
                     b.HasIndex("ProductRefId")
                         .IsUnique();
 
-                    b.ToTable("Stocks", (string)null);
+                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("eCom_api.Model.TrendingProductModel", b =>
@@ -484,7 +490,7 @@ namespace eCom_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TrendingProducts", (string)null);
+                    b.ToTable("TrendingProducts");
                 });
 
             modelBuilder.Entity("eCom_api.Model.WishlistModel", b =>
@@ -519,7 +525,7 @@ namespace eCom_api.Migrations
 
                     b.HasIndex("CustomerRefId");
 
-                    b.ToTable("WishLists", (string)null);
+                    b.ToTable("WishLists");
                 });
 
             modelBuilder.Entity("eCom_api.Model.CartItemModel", b =>

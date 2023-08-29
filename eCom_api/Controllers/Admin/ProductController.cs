@@ -1,39 +1,32 @@
-﻿using eCom_api.Data;
-using eCom_api.Model;
-using eCom_api.Repository;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using eCom_api.Model;
+using eCom_api.Repository; 
+using Microsoft.AspNetCore.Mvc; 
 
-namespace eCom_api.Controllers;
+namespace eCom_api.Controllers.Admin;
 
-[Route("api/[controller]/[action]")]
-[ApiController]
-public class ProductController : ControllerBase
-{ 
+public class ProductController : AdminBaseController
+{
     readonly ProductRepository _productRepository;
 
     public ProductController(ProductRepository productRepository)
-    { 
+    {
         _productRepository = productRepository;
     }
 
-    [HttpGet]
+    [HttpGet("GetAllProduct")]
     public async Task<IActionResult> GetAllProduct()
     {
         var productDataList = await _productRepository.GetProductDataListAsync();
         return Ok(productDataList);
     }
-    [HttpGet]
+    [HttpGet("GetProductById")]
     public IActionResult GetProductById(int id)
     {
         var productDataList = _productRepository.GetProductById(id);
         return Ok(productDataList);
     }
 
-    [HttpDelete]
+    [HttpDelete("RemoveByProductId")]
     public async Task<IActionResult> RemoveByProductId(int id)
     {
         if (id == 0)
@@ -47,22 +40,22 @@ public class ProductController : ControllerBase
         return BadRequest("operation failed");
     }
 
-    [HttpPut]
+    [HttpPut("UpdateProduct")]
     public async Task<IActionResult> UpdateProduct(ProductModel productModelObj)
     {
         if (productModelObj == null)
         {
             return BadRequest();
         }
-        if (await _productRepository.UpdateEmployee(productModelObj) )
+        if (await _productRepository.UpdateEmployee(productModelObj))
         {
             return Ok(productModelObj);
         }
         return BadRequest("operation failed");
     }
 
-     
-    [HttpPost]
+
+    [HttpPost("AddInProduct")]
     public async Task<IActionResult> AddInProduct([FromBody] ProductModel productModelObj)
     {
         if (productModelObj == null)
@@ -74,7 +67,7 @@ public class ProductController : ControllerBase
             return Ok("pls pass valid data");
         }
         try
-        { 
+        {
             productModelObj.ImageUrl = await _productRepository.UploadImage("Assets/images/products/", productModelObj.imageFile);
 
             int id = await _productRepository.AddNewProduct(productModelObj);
@@ -94,5 +87,5 @@ public class ProductController : ControllerBase
         }
 
     }
-    
+
 }

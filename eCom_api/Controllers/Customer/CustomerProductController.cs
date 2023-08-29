@@ -1,17 +1,14 @@
 ﻿using eCom_api.Data;
 using eCom_api.DTOs;
-using eCom_api.Repository; 
+using eCom_api.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 
-namespace eCom_api.Controllers;
+namespace eCom_api.Controllers.Customer;
 
-[Route("api/[controller]/[action]")]
-[ApiController]
-
-public class CustomerProductController : ControllerBase
+public class CustomerProductController : CustomerBaseController
 {
     readonly CustomerProductRepository _CustomerProductRepository;
     readonly SearchRepository _SearchRepository;
@@ -24,7 +21,7 @@ public class CustomerProductController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet]
+    [HttpGet("GetProducts")]
     public async Task<IActionResult> GetProducts(int pageNumber = 1)
     {
         try
@@ -53,7 +50,7 @@ public class CustomerProductController : ControllerBase
     }
 
 
-    [HttpGet]
+    [HttpGet("SearchProductName")]
     public async Task<IActionResult> SearchProductName(string productName, int pageNumber)
     {
         try
@@ -65,8 +62,8 @@ public class CustomerProductController : ControllerBase
         {
             _logger.LogError($"CustomerProductController > SearchProductName > error fetching data: {ex}");
             return StatusCode(500, "An error occurred: " + ex.Message);
-        } 
-        
+        }
+
     }
-     
+
 }

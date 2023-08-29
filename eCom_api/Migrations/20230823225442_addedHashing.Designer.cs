@@ -12,8 +12,8 @@ using eCom_api.Data;
 namespace eCom_api.Migrations
 {
     [DbContext(typeof(ChalDalContext))]
-    [Migration("20230729222250_updateRelation-product-stock-category")]
-    partial class updateRelationproductstockcategory
+    [Migration("20230823225442_addedHashing")]
+    partial class addedHashing
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,10 +48,15 @@ namespace eCom_api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varbinary(100)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varbinary(100)");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(100)
@@ -176,10 +181,15 @@ namespace eCom_api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varbinary(100)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varbinary(100)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -360,6 +370,9 @@ namespace eCom_api.Migrations
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
 
                     b.Property<int?>("WishlistModelWishlistId")
                         .HasColumnType("int");
