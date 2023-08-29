@@ -28,10 +28,11 @@ Could not create constraint or index. See previous errors.`
             - solution summary: 
                 - follow the dependency of fk: if u pass a value in fk, make sure that fk has a row created in that table
                 - check how to create one2one and one2many relationship. the way i created the relationship were wrong.
-3.Unable to resolve service for type 'ExpenseTracker.Repository.IEachCategoryRepository' while attempting to activate 'ExpenseTracker.Controllers.EachCategoriesController'.
+
+3. Unable to resolve service for type 'ExpenseTracker.Repository.IEachCategoryRepository' while attempting to activate 'ExpenseTracker.Controllers.EachCategoriesController'.
     - solution: added 'ExpenseTracker.Repository.IEachCategoryRepository' in IOC
 
-4.TokenService > CreateToken > : Unable to create KeyedHashAlgorithm for algorithm, the key size must be greater than: '512' bits, key has '504' bits. (Parameter 'keyBytes')
+4. TokenService > CreateToken > : Unable to create KeyedHashAlgorithm for algorithm, the key size must be greater than: '512' bits, key has '504' bits. (Parameter 'keyBytes')
     - solution: increased the tokenKey size in appsetting file 
         ```
         {
