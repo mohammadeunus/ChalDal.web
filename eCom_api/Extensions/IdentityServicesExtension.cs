@@ -1,6 +1,4 @@
-﻿using eCom_api.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer; 
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -10,7 +8,7 @@ public static class IdentityServicesExtension
 {
     public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
     {
-        /*services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -20,7 +18,8 @@ public static class IdentityServicesExtension
                     ValidateIssuer= false,
                     ValidateAudience= false,
                 };
-            });*/
+            });
         return services;
     }
 }
+ 
