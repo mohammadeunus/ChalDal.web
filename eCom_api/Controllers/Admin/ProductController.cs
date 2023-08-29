@@ -1,15 +1,10 @@
-﻿using eCom_api.Data;
-using eCom_api.Model;
-using eCom_api.Repository;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using eCom_api.Model;
+using eCom_api.Repository; 
+using Microsoft.AspNetCore.Mvc; 
 
-namespace eCom_api.Controllers.Customer;
- 
-public class ProductController : CustomerBaseController
+namespace eCom_api.Controllers.Admin;
+
+public class ProductController : AdminBaseController
 {
     readonly ProductRepository _productRepository;
 

@@ -3,9 +3,9 @@ using eCom_api.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace eCom_api.Controllers.Customer;
+namespace eCom_api.Controllers.Admin;
 
-public class CategoryController : CustomerBaseController
+public class CategoryController : AdminBaseController
 {
     readonly ChalDalContext _Context;
     public CategoryController(ChalDalContext context)

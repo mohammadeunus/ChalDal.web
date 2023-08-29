@@ -14,7 +14,7 @@ public class AdminDashboardController : AdminBaseController
         _logger = logger;
     }
 
-    [HttpGet]
+    [HttpGet("GetTopProducts")]
     public IActionResult GetTopProducts()
     {
         try

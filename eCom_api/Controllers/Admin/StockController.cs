@@ -5,9 +5,9 @@ using eCom_api.Data;
 using eCom_api.Model;
 using eCom_api.Repository;
 
-namespace eCom_api.Controllers.Customer;
- 
-public class StockController : CustomerBaseController
+namespace eCom_api.Controllers.Admin;
+
+public class StockController : AdminBaseController
 {
     readonly StockRepository _StockRepo;
     public StockController(StockRepository StockRepo)
